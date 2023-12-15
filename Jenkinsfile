@@ -16,5 +16,17 @@ pipeline {
                 }
             }
         }
+
+        stage('Run Container Test') {
+            steps {
+                script {
+                    def containerName = 'test-container'
+
+                    // Run a container based on the built image
+                    docker.image(dockerImageName).withRun("--name ${containerName}") {
+                        // Add any test commands here
+                        echo "Container is running..."
+                        // You can add more commands to validate the container behavior
+                    }
     }
 }
