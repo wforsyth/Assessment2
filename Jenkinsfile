@@ -13,12 +13,7 @@ pipeline {
 
                     // Build the Docker image
                     docker.build(dockerImageName, '-f ' + dockerfilePath + ' .')
-
-                    // Push Docker image
-                    docker.withRegistry('https://hub.docker.com/repository/wforsyth/assessment2', 'assessment2'){
-                        docker.image(dockerImageName).push()
-                    }
-                }
+                
             }
         }
     }
