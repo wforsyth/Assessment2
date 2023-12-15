@@ -20,6 +20,7 @@ pipeline {
         stage('Run Container Test') {
             steps {
                 script {
+                    def dockerImageName = 'assessment2:1.0'
                     def containerName = 'test-container'
 
                     // Run a container based on the built image
