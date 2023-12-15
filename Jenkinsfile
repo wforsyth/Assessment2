@@ -32,5 +32,16 @@ pipeline {
                 }
              }
          }
+
+        stage('Push Docker Image') {   
+            environment {
+                DOCKER_COMMON_CREDS = credentials('dockerHub') 
+            }
+            steps {
+                
+                sh 'docker login -u $DOCKER_COMMON_CREDS_USR -p $DOCKER_COMMON_CREDS_PSW'
+                sh 'docker push okbartz/cw2:1.0'
+            }
+        }
     }
 }
