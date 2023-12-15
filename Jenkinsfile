@@ -28,7 +28,8 @@ pipeline {
                         echo "Container is running..."
                         // You can add more commands to validate the container behavior
                     }
+                }
              }
          }
     }
-
+}
