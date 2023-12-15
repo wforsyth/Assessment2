@@ -46,7 +46,7 @@ pipeline {
         
         stage('Deploy to Kubernetes') {
             steps {
-                sshagent(['ProductionServer']) {
+                sshagent(['privatekey']) {
 
                     sh '''
                     ssh ubuntu@172.31.62.131 '/usr/bin/kubectl set image deployments/image-deployment imagedeployment1=wforsyth/assessment2:1.0'
