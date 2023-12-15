@@ -13,7 +13,7 @@ pipeline {
 
                     // Build the Docker image
                     docker.build(dockerImageName, '-f ' + dockerfilePath + ' .')
-                
+                }
             }
         }
     }
