@@ -40,7 +40,7 @@ pipeline {
             steps {
                 
                 sh 'docker login -u ${DOCKER_COMMON_CREDS_USR} -p ${DOCKER_COMMON_CREDS_PSW}'
-                sh 'docker push okbartz/cw2:1.0'
+                sh 'docker push ${dockerImageName}'
             }
         }
     }
