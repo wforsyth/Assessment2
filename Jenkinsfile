@@ -32,7 +32,7 @@ pipeline {
             steps {
                 
                 sh 'docker login -u ${DOCKER_COMMON_CREDS_USR} -p ${DOCKER_COMMON_CREDS_PSW}'
-                sh 'docker push wforsyth/assessment2:latest'
+                sh 'docker push wforsyth/assessment2:1.0'
             }
         }
         
