@@ -5,13 +5,10 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Define the Dockerfile location
                     def dockerfilePath = './Dockerfile'
 
-                    // Define the Docker image name and tag
                     def dockerImageName = 'assessment2:1.0'
 
-                    // Build the Docker image
                     docker.build(dockerImageName, '-f ' + dockerfilePath + ' .')
                 }
             }
@@ -19,17 +16,11 @@ pipeline {
 
         stage('Run Container Test') {
             steps {
-                script {
-                    def dockerImageName = 'assessment2:1.0'
-                    def containerName = 'test-container'
-
-                    // Run a container based on the built image
-                    docker.image(dockerImageName).withRun("--name ${containerName}") {
-                        // Add any test commands here
-                        echo "Container is running..."
-                        // You can add more commands to validate the container behavior
-                    }
-                }
+                sh 'docker container run --detach --publish 80:80 --name assessment2 wforsyth/assessment2:1.0'
+                sh 'docker container ls'
+                echo "Container running. Test complete."
+                sh 'docker container stop assessment2'
+                sh 'docker container rm assessment2'
              }
          }
 
