@@ -16,7 +16,7 @@ pipeline {
 
         stage('Run Container Test') {
             steps {
-                sh 'docker container run --detach --publish 80:80 --name assessment2 wforsyth/assessment2:latest'
+                sh 'docker container run --detach --publish 80:80 --name assessment2 wforsyth/assessment2:1.0'
                 sh 'docker container ls'
                 echo "Container running. Test complete."
                 sh 'docker container stop assessment2'
