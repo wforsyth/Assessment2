@@ -40,7 +40,7 @@ pipeline {
                 sshagent(['privatekey']) {
 
                     sh '''
-                    ssh ubuntu@34.229.137.110 '/usr/bin/kubectl rollout restart deployments/assessment2'
+                    ssh ubuntu@54.157.168.45 '/usr/bin/kubectl set image deployments/assessment2 assessment2=wforsyth/assessment2:latest'
                     '''
 
                 }
