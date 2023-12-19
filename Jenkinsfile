@@ -7,7 +7,7 @@ pipeline {
                 script {
                     def dockerfilePath = './Dockerfile'
 
-                    def dockerImageName = 'assessment2:1.0'
+                    def dockerImageName = 'assessment2:latest'
 
                     docker.build(dockerImageName, '-f ' + dockerfilePath + ' .')
                 }
@@ -16,7 +16,7 @@ pipeline {
 
         stage('Run Container Test') {
             steps {
-                sh 'docker container run --detach --publish 80:80 --name assessment2 wforsyth/assessment2:1.0'
+                sh 'docker container run --detach --publish 80:80 --name assessment2 wforsyth/assessment2:latest'
                 sh 'docker container ls'
                 echo "Container running. Test complete."
                 sh 'docker container stop assessment2'
@@ -31,7 +31,7 @@ pipeline {
             steps {
                 
                 sh 'docker login -u ${DOCKER_COMMON_CREDS_USR} -p ${DOCKER_COMMON_CREDS_PSW}'
-                sh 'docker push wforsyth/assessment2:1.0'
+                sh 'docker push wforsyth/assessment2:latest'
             }
         }
         
