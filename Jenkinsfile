@@ -7,7 +7,7 @@ pipeline {
                 script {
                     def dockerfilePath = 'Dockerfile'
 
-                    def dockerImageName = 'wforsyth/assessment2:latest'
+                    def dockerImageName = 'wforsyth/assessment2:new'
 
                     docker.build(dockerImageName, '-f ' + dockerfilePath + ' .')
                 }
@@ -31,7 +31,7 @@ pipeline {
             steps {
                 
                 sh 'docker login -u ${DOCKER_COMMON_CREDS_USR} -p ${DOCKER_COMMON_CREDS_PSW}'
-                sh 'docker push wforsyth/assessment2:latest'
+                sh 'docker push wforsyth/assessment2:new'
             }
         }
         
@@ -40,7 +40,7 @@ pipeline {
                 sshagent(['privatekey']) {
 
                     sh '''
-                    ssh ubuntu@54.157.168.45 '/usr/bin/kubectl set image deployments/assessment2 assessment2=wforsyth/assessment2:latest'
+                    ssh ubuntu@54.157.168.45 '/usr/bin/kubectl set image deployments/assessment2 assessment2=wforsyth/assessment2:new'
                     '''
 
                 }
